@@ -1,0 +1,32 @@
+server:
+  port: 8085
+
+---
+spring:
+  main:
+    web-application-type: reactive
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5434/postgres
+    username: careered
+    password: amar1404
+  redis:
+    host: localhost
+    port: 6379
+    password: amar1404
+
+---
+app:
+  jwt:
+    issuer: careere-ed
+    access-ttl-minutes: 15
+    refresh-ttl-days: 30
+    hs256-secret: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6ImNhcmVlci1lZCIsImFkbWluIjp0cnVlLCJpYXQiOjE1MTYyMzkwMjJ9.RTAJUjSM4muUjD6KeBB3BFNTrM52huAA2o-APauCmA8"
+  otp:
+    ttl-seconds: 600 # 10 minutes
+    rate-limit-per-15m: 5
+
+---
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
