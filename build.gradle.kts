@@ -48,6 +48,7 @@ dependencies {
 	testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("io.projectreactor:reactor-test")
+    testImplementation("com.github.codemonstur:embedded-redis:1.4.2")
     runtimeOnly("org.postgresql:postgresql:42.7.3") // for Flyway if you add it
     runtimeOnly("org.postgresql:r2dbc-postgresql:1.0.5.RELEASE")
 
@@ -61,4 +62,10 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
