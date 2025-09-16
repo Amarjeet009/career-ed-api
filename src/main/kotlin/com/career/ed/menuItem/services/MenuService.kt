@@ -33,8 +33,9 @@ class MenuService(private val repo: MenuItemRepository) {
             }
             .collectList()
             .map { menu ->
-                if (menu.isNotEmpty()) {
-                    ApiResponse(200, "success", menu)
+                val sortedMenu = menu.sortedBy { it.id }
+                if (sortedMenu.isNotEmpty()) {
+                    ApiResponse(200, "success", sortedMenu)
                 } else {
                     ApiResponse(400, "records not found", emptyList())
                 }
